@@ -1,303 +1,262 @@
 'use strict';
 /*
- *  Масиви: літерал масива, елементи, індексація, довжина
+ * Функціональний вираз та оголошення функції.
+ * Параметри, аргументи, повернення.
  */
 
-const array = [0, 1, 'str', true, false, [2, 3, 4]];
+// function назва_функції(параметр_1, параметр_2...) {
+// тіло функції
+// }
+
+// showMessage('Oleksii');
+//
+// function showMessage(userFirstName, userLastName = '') {
+//   const message = `Hello ${userFirstName} ${userLastName}`;
+//
+//   console.log(message);
+// }
+
+// showMessage('Oleksii');
+//
+// showMessage('Craig', 'Morris');
+
+// const showMessage = function (userFirstName, userLastName = '') {
+//   const message = `Hello ${userFirstName} ${userLastName}`;
+//
+//   console.log(message);
+// };
+
+// showMessage('Oleksii');
+//
+// showMessage('Craig', 'Morris');
+
+// function fn(number) {
+  // if (number > 10) {
+  //   return 'Число більше 10';
+  // }
+  //
+  // return 'Число менше 10';
+// }
+
+// const result = fn(0); // 'Число менше 10'
+//
+// console.log(result);
 
 /*
-? Створіть масив genres з елементами Jazz і Blues.
-? Додайте "Рок-н-рол" в кінець.
-? Виведіть у консоль перший елемент масиву.
-? Виведіть у консоль останній елемент масиву. Код має працювати для масиву довільної довжини.
-? Видаліть перший елемент та виведіть його в консоль.
-? Вставте «Country» та «Reggy» на початок масиву.
+? Напиши функцію calcBMI(weight, height) яка розраховує і повертає індекс маси тіла людини.
+? Для цього необхідно розділити вагу в кілограмах на квадрат висоти людини в метрах.
+? Вага і висота будуть спеціально передані як рядки. Нецілі числа можуть бути задані у вигляді 24.7 або 24,7,
+? тобто як роздільник дробової частини може бути кома.
+? Індекс маси тіла необхідно округлити до однієї цифри після коми;
+*
  */
 
-// const genres = ['Jazz', 'Blues'];
-// genres.push('Rock-n-Roll');
-// const firstElem = genres.shift();
-// const arrLength = genres.unshift('Country', 'Reggy');
-// console.log(firstElem, genres, arrLength);
+// function calcBMI(weight, height) {
+//   weight = Number.parseFloat(weight.replace(',', '.'));
+//   height = Number.parseFloat(height.replace(',', '.'));
+//
+//   const result = weight / (height ** 2);
+//   return result.toFixed(1);
+// }
+//
+// console.log(calcBMI('88,3', '1.75'));
 
 /*
- * Присвоєння за посиланням і за значенням
- */
-
-/*
-? Створіть змінну a = 10.
-? Створіть та привласніть змінній b -> змінну a
-? Виведіть до консолі обидві ці змінні
-? Змініть значення змінної a і ще раз виведіть у консоль
+? Напишіть функцію min(a, b), яка повертає менше з чисел a і b.
 */
 
-// let a = 10;
-// const b = a;
-//
-// console.log('a: ', a);
-// console.log('b: ', b);
-//
-// a = 20;
-//
-// console.log('a: ', a);
-// console.log('b: ', b);
-
-/*
-? Створіть масив arr1 = [1, 2, 3].
-? Створіть та привласніть масиву arr2 -> масив arr1
-? Виведіть до консолі обидва цих масива
-? Додайте елемент в масив arr1 і ще раз виведете обидва масиви в консоль
-*/
-
-// const arr1 = [1, 2, 3, ];
-// const arr2 = [].concat(arr1);
-//
-// console.log('arr1: ', arr1);
-// console.log('arr2: ', arr2);
-//
-// arr1.push(4);
-// arr2.push(5);
-//
-// console.log('arr1: ', arr1);
-// console.log('arr2: ', arr2);
-
-/*
- * Перебор масива циклами for та for...of
- */
-
-/*
-? Напиши скрипт для перебору масиву fruits циклом for.
-? Для кожного елемента масиву виведіть у консоль рядок у форматі номер_елемента: значення_елемента.
-? Нумерація елементів має починатися з першого.
-*/
-
-// const fruits = ['🍎', '🍇', '🍑', '🍌', '🍋'];
-//
-// for (let i = 0; i < fruits.length; i++) {
-//   console.log(`${i}: ${fruits[i]}`);
-// }
-
-/*
-? Напиши скрипт пошуку найменшого числа у масиві.
-? Код має працювати для будь-якого масиву чисел.
-? Використовуйте цикл для вирішення задачі.
-*/
-
-// const numbers = [2, 17, -94, 1, -20, -1, 23, -40, 37, -50];
-// let min = numbers[0];
-
-// for (let i = 0; i < 5; i++) {
-//   if (i < min) {
-//
-//   }
-// }
-
-// for (const num of numbers) {
-//   if (num < min) {
-//     min = num;
-//   }
-// }
-
-// console.log(min);
-
-
-/*
-? У нас є масив із зарплатами працівників, потрібно порахувати загальну суму зарплат
-*/
-
-// const salaries = [200, 450, 600, 150, 300];
-// let sum = 0;
-
-// for (let salary of salaries) {
-//   salary += 100;
-// }
-
-// for (let i = 0; i < salaries.length; i++) {
-//   sum += salaries[i];
-// }
-
-// console.log(sum);
-
-/*
-? У нас є кілька масивів із зарплатами працівників із різних відділів, потрібно порахувати загальну суму зарплат
-*/
-
-const managerSalaries = [100, 150, 250, 400, 500];
-const developersSalaries = [800, 1500, 4000];
-
-// const concatArray = managerSalaries.concat(developersSalaries);
-// let sum = 0;
-
-// let managerSalariesSum = 0;
-// let developersSalariesSum = 0;
-//
-// for (let salary of managerSalaries) {
-//   managerSalariesSum += salary;
+// const min = function(a, b) {
+//   return a < b ? a : b;
 // }
 //
-// for (let salary of developersSalaries) {
-//   developersSalariesSum += salary;
-// }
-//
-// for (let salary of concatArray) {
-//   sum += salary;
-// }
-//
-// console.log(sum);
+// console.log(min(1, 4));
+// console.log(min(12, 4));
 
 /*
- * Базові методи: split та join, indexOf та includes, push, slice та splice
- */
-
-/*
-? Напиши скрипт для обчислення площі прямокутника зі сторонами,
-? значення яких зберігаються в змінній values у вигляді рядка.
+? Напишіть функцію getRectArea(dimensions) для обчислення площі прямокутника зі сторонами,
+? значення яких буде передано до параметра dimensions у вигляді рядка.
 ? Значення гарантовано розділені пробілом.
 */
 
-// const values = '8 11';
-// const rectArr = values.split(' ');
-// const result = rectArr[0] * rectArr[1];
-// console.log(result);
+// function getRectArea(dimensions) {
+//   const sideArr = dimensions.split(' ');
+//   return Number(sideArr[0]) * Number(sideArr[1]);
+// }
+// console.log(4 * getRectArea('2 2'));
+//
+// console.log(getRectArea('2 4'));
+// console.log(getRectArea('3 2'));
+// console.log(getRectArea('2 '));
 
 /*
-? Напиши скрипт, який виводить в консоль ім'я та телефонний номер користувача.
-? У змінних names і phones зберігаються рядки імен та телефонних номерів, розділені комами.
-? Порядковий номер імен та телефонів у рядках вказують на відповідність.
-? Кількість імен та телефонів гарантовано однакова.
+? Напиши функцію logItems(items), яка отримує масив і використовує цикл for,
+? який для кожного елемента масиву буде виводити до консолі повідомлення
+? у форматі < номер елемента > - < значення елемента >. Нумерація елементів повинна починатися з 1.
+? Наприклад, для першого елемента масиву ['Mango','Poly','Ajax'] з індексом 0 буде виведено 1 - Mango,
+? а для індексу 2 виведе 3 - Ajax.
 */
 
-// const names = 'Jacob,William,Solomon,Artemis';
-// const phones = '89001234567,89001112233,890055566377,890055566300';
-//
-// const namesArray = names.split(',');
-// const phonesArray = phones.split(',');
-//
-// for (let i = 0; i < namesArray.length; i++) {
-//   console.log(`${namesArray[i]}: ${phonesArray[i]}`);
+// const logItems = function(items = []) {
+//   for (let i = 0; i < items.length; i++) {
+//     console.log(`${i + 1} - ${items[i]}`);
+//   }
 // }
-
-// console.log(`${namesArray[0]}: ${phonesArray[0]}`);
-
-// console.log(namesArray, phonesArray);
+//
+// logItems(['Mango', 'Poly', 'Ajax']);
+// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
 
 /*
-? Напиши скрипт, який «розгортає» рядок (зворотний порядок букв)
-? та виводить її в консоль.
+? Напишіть функцію someFunction(arg1, arg2), яка виводить у консоль ім'я і телефонний номер користувача.
+? Параметри names і phones будуть передані рядками, розділені комами.
+? Порядковий номер імен і телефонів у рядках вказують на відповідність.
+? Кількість імен і телефонів гарантовано однакова.
 */
 
-const string = 'Welcome to the future';
-
-// Option 1
+// function showPersonContacts(names, phoneNumbers) {
+//   names = names.split(',');
+//   phoneNumbers = phoneNumbers.split(',');
 //
-// const stringArray = string.split('');
-// const reverseStringArray = [];
-//
-// for (let i = stringArray.length - 1; i >= 0; i--) {
-//   reverseStringArray.push(stringArray[i]);
+//   for (let i = 0; i < names.length; i++) {
+//     console.log(`${names[i]}: ${phoneNumbers[i]}`);
+//   }
 // }
 //
-// const reverseString = reverseStringArray.join();
+// const someValue = showPersonContacts(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
+// console.log(someValue);
 //
-// console.log(reverseString);
-
-// Option 2
-// let reverseString = '';
-//
-// for (let i = string.length - 1; i >= 0; i--) {
-//   reverseString += string[i];
-// }
-//
-// console.log(reverseString);
-
-// Option 3
-// const reverseString = string.split('').reverse().join('');
-// console.log(reverseString);
-
-// Option 4
-// const reverseStringArray = string.split('');
-// let result = [];
-//
-// for (let char of reverseStringArray) {
-//   result.unshift(char);
-// }
-//
-// result = result.join('');
-// console.log(result);
+// showPersonContacts('Vera,Carr,Violet,Sherman', '89001234567,89001112233,890055566377,890055566300');
 
 /*
-? У нас є масив співробітників, відсортуйте його, щоб співробітники не повторювалися
+? Напишіть функцію SomeFunction(arg1) яка шукає найбільше число в масиві.
 */
+
+// const findLargestNumber = function(numberArray) {
+//   let max = numberArray[0];
+//
+//   for (const num of numberArray) {
+//     if (max < num) {
+//       max = num;
+//     }
+//   }
+//
+//   return max;
+// }
+
+// console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
+// console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 
 /*
-1 Ітерація
-0 === 0
-
-2 Ітерація
-1 === 0
-
-3 Ітерація
-2 === 2
-
-4 Ітерація
-3 === 3
-
-5 Ітерація
-4 === 4
-
-6 Ітерація
-5 === 2
-
-7 Ітерація
-6 === 3
+? Напишіть функцію calcAverage() яка приймає довільну кількість аргументів і повертає їх середнє значення.
+? Всі аругменти будуть тільки числами.
 */
 
-// перебираємо масив (кожне значення);
+function calcAverage() {
+  let total = 0;
 
-// 0
-// ітератор = 0
-// порядковий номер масиву (0) = ітератор (0)
-// employees[0] = 'Dennis'
-
-// перевіряємо з попередніми значеннями
-// шукаємо перше співпадіння з значенням масив[0] в масиві
-// оскільки це перше значення в масиві, то це і буде перше співпадіння
-
-// перед цим значенням схожих рядків немає, бо це перше значення
-// додаємо це значення до масиву з результатом (filteredEmployees)
-
-// 1
-// ітератор = 0
-// порядковий номер масиву (0) = ітератор (0)
-// employees[0] = 'Dennis'
-
-// перевіряємо з попередніми значеннями
-// шукаємо перше співпадіння з значенням масив[0] в масиві
-// оскільки це перше значення в масиві, то це і буде перше співпадіння
-
-// перед цим значенням схожих рядків немає, бо це перше значення
-// додаємо це значення до масиву з результатом (filteredEmployees)
-
-//                    0          1        2         3      4        5        6
-const employees = ['Dennis', 'Dennis', 'Shaw', 'Watkins', 'Ray', 'Shaw', 'Watkins'];
-const filteredEmployees = [];
-
-for (let i = 0; i < employees.length; i++) {
-  if (i === employees.indexOf(employees[i])) {
-    filteredEmployees.push(employees[i]);
+  for (let num of arguments) {
+    total += num;
   }
+
+  return total / arguments.length;
 }
 
-//? Співробітник Shaw звільнився, видаліть його з масиву
+console.log(calcAverage(1, 2, 3, 4)); // 2.5
+console.log(calcAverage(14, 8, 2)); // 8
+console.log(calcAverage(27, 43, 2, 8, 36)); // 23.2
 
-// alert('Test')
-const indexOfShow = filteredEmployees.indexOf('Shaw');
-const shaw = filteredEmployees.splice(indexOfShow, 1);
+/*
+? Напишіть функції для роботи з колекцією навчальних курсів courses:
+? SomeFunction(arg1) - додає курс в кінець колекції
+? SomeFunction(arg1) - видаляє курс з колекції
+? SomeFunction(arg1, arg2) - змінює назву курса
+*/
 
-console.log(filteredEmployees, shaw);
-
-//? Додати нового співробітника Thornton, перед Watkins;
-// const indexOfWatkins = filteredEmployees.indexOf('Watkins');
-// filteredEmployees.splice(indexOfWatkins, 0, 'Thornton');
+// const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL'];
 //
-// console.log(filteredEmployees);
+// function addCourse(courseName) {
+//   if (courses.includes(courseName)) {
+//     console.log('У вас вже є такий курс');
+//     return;
+//   }
+//
+//   courses.push(courseName);
+// }
+//
+// function removeCourse(courseName) {
+//   if (!courses.includes(courseName)) {
+//     console.log('Курс за такою назвою не знайдено');
+//     return;
+//   }
+//
+//   const courseIndex = courses.indexOf(courseName);
+//   courses.splice(courseIndex, 1);
+// }
+//
+// function renameCourse(currentName, newName) {
+//   if (!courses.includes(currentName)) {
+//     console.log('Курс за такою назвою не знайдено');
+//     return;
+//   }
+//
+//   const currentCourseIndex = courses.indexOf(currentName);
+//   courses.splice(currentCourseIndex, 1, newName);
+// }
+
+
+// addCourse('Express');
+// console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL', 'Express']
+// addCourse('CSS'); // 'У вас вже є такий курс'
+//
+// removeCourse('React');
+// console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'Express']
+// removeCourse('Vue'); // 'Курс за такою назвою не знайдено'
+
+// renameCourse('PostgreSQL', 'NestJS');
+// console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
+// renameCourse('С++', 'PHP'); // 'Курса за такою назвою не знайдено'
+
+
+
+// const fn1 = function () {
+//   console.log('fn1');
+//
+//   fn2();
+//
+//   console.log('final');
+// };
+//
+// const fn2 = function () {
+//   console.log('fn2');
+//
+//   fn3();
+//
+//   console.log('After fn2');
+// };
+//
+// const fn3 = function () {
+//   console.log('fn3');
+// };
+//
+// fn1();
+
+// const findLargestNumberFromString = function(value) {
+//   const valueArr = value.split(', ');
+//   return findLargestNumber(valueArr);
+// }
+//
+// function findLargestNumber(numberArray) {
+//   let maximum = numberArray[0];
+//
+//   for (const number of numberArray) {
+//     if (maximum < number) {
+//       maximum = number;
+//     }
+//   }
+//
+//   return maximum;
+// }
+// //                                             0  1   2   3  4
+// console.log(findLargestNumberFromString([2, 17, 23, 5, 37]));
