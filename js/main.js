@@ -1,87 +1,107 @@
 'use strict';
-/*
- * Створення об'єкта (конструктор, литерал).
- * Властивості, ключі (ім'я) та значення
- */
-
-// Фільм (назва, опис, рейтинг, акторський склад, вікове обмеження)
-// const film = {
-//   title: 'Venom',
-//   description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, mollitia!',
-//   rating: 8,
-//   actors: ['Jason', 'Ollie', 'Mattie'],
-//   adult: true,
-// };
 
 /*
- * Доступ до властивостей(obj.key, obj[key]).
- * Додавання та зміна властивостей
+ * Операція spread замість concat і slice
  */
 
-// const test = 'title';
+//* Копія масива
+// const numbers = [1, 2, 3, 4, 5];
+// const numbersCopy = [...numbers];
+
+// Wrong option 1
+// const numbersCopy = [].concat(numbers);
+
+// Wrong option 2
+// const numbersCopy = [];
+// for (let num of numbers) {
+//   numbersCopy.push(num);
+// }
+
+// console.log('numbers: ', numbers);
+// console.log('numbersCopy: ', numbersCopy);
 //
-// console.log(film.actors);
-// console.log(film[test]);
+// numbersCopy[0] = 10;
+//
+// console.log('numbers: ', numbers);
+// console.log('numbersCopy: ', numbersCopy);
 
+//* Об'єднання масивів
+// const numbers = [1, 2, 3, 4];
+// const anotherNumbers = [10, 9, 8, 7];
+// const totalArrNumbers = [...numbers, 200, 300, ...anotherNumbers];
+//
+// console.log(totalArrNumbers);
+//
+// totalArrNumbers[0] = 100;
+//
+// console.log(numbers);
+// console.log(anotherNumbers);
+// console.log(totalArrNumbers);
+
+//* Розпилення масиву у функцію
+// const numbers = [1, 2, 33, 4, 5];
+
+// ...number = 1, 2, 33, 4, 5;
+// console.log(Math.max(...numbers));
 
 /*
-
- * Короткий запис властивостей
+ * Операція spread замість Object.assign({}, obj)
  */
 
-/* <input type="text" name="username"> */
-/* <input type="email" name="useremail"> */
-
-// let firstName = prompt('Ваше ім`я');
-// const lastName = prompt('Ваше прізвище');
-//
 // const user = {
-//   firstName,
-//   lastName,
+//   firstName: 'Jonathan',
+//   lastName: 'Barnett',
+//   age: 30,
 // };
 //
-// console.log(user, firstName);
-
-/*
- * Присвоєння за посиланням
- */
-
-// const user = {
-//   firstName: 'Brett',
-//   lastName: 'Romero',
-//   age: 20,
+// const anotherUser = {
+//   ...user,
 // };
-
-// const user2 = {
-//   firstName: 'Olya',
-//   lastName: 'Orlova',
-//   age: 23,
-//   gender: 'male',
-// };
-
-// console.log('user: ', user);
-// console.log('user2: ', user2);
-
-// console.log({a: 1, b: 2} === {a: 1, b: 2});
-
-// user2.firstName = 'Oleksii';
 //
 // console.log('user: ', user);
-// console.log('user2: ', user2);
-// console.log('resultObj: ', resultObj);
-// console.log('resultObj.firstName: ', resultObj.test);
+// console.log('anotherUser: ', anotherUser);
+//
+// anotherUser.firstName = 'Dale';
+//
+// console.log('user: ', user);
+// console.log('anotherUser: ', anotherUser);
 
-/*
- * Все у цьому світі об'єкти
- */
-// const fn = function () {
-//   console.log('Hello');
+//* Розпилення складних типів
+
+// const user = {
+//   firstName: 'Jonathan',
+//   lastName: 'Barnett',
+//   age: 30,
+//   someArr: [1, 2, 3, 4],
 // };
 //
-// fn.test = 5;
+// const anotherUser = {...user};
 //
-// fn();
+// console.log('user: ', user);
+// console.log('anotherUser: ', anotherUser);
 //
-// console.dir(fn);
+// anotherUser.firstName = 'Helena';
+// anotherUser.someArr[0] = 100;
 //
-// console.log(fn.test);
+// console.log('user: ', user);
+// console.log('anotherUser: ', anotherUser);
+
+/*
+ * Операція rest
+ */
+
+//? Напишіть функцію summ, яка складає довільну кількість аргументів
+
+// const summ = function (numbers) {
+//   console.log(num1, num2, numbers);
+//   let total = 0;
+//
+//   for (const number of numbers) {
+//     total += number;
+//   }
+//
+//   return total;
+// };
+
+// console.log(summ(1, 2, 3, 4, 5));
+// console.log(summ(10, 20));

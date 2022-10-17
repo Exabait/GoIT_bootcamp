@@ -1,164 +1,206 @@
 'use strict';
 /*
-? Напиши скрипт, який для об'єкта user послідовно:
-? додає властивість mood зі значенням 'happy'
-? замінює значення hobby на 'skydiving'
-? замінює значення premium на false
-? виводить вміст об'єкта user у форматі ключ: значення використовуючи Object.keys() і for...of
+? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
+? замість набору незалежних аргументів.
 */
 
-// const user = {
-//   name: 'Mango',
-//   age: 20,
-//   hobby: 'html',
-//   premium: true,
-// };
+// function calcBMI({ weight: someWeight = '88', height } = {}) {
+//   console.log(someWeight);
+//   const numericWeight = Number(weight.replace(',', '.'));
+//   const numericHeight = Number(height.replace(',', '.'));
 //
-// user.mood = 'happy';
-// user.hobby = 'skydiving';
-// user.premium = !user.premium;
+//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
+// }
 //
-// const userKeys = Object.keys(user);
+// const obj = {weight: { someValue: '88,3' }, height: '1.75'};
 //
-// for (const key of userKeys) {
-//   console.log(`${key}: ${user[key]}`);
+// let { weight: someWeight, height } = obj;
+//
+// someWeight.someValue = 'qwer';
+//
+// console.log(obj);
+
+// Було
+// console.log(calcBMI('88,3', '1.75'));
+// console.log(calcBMI('68,3', '1.65'));
+// console.log(calcBMI('118,3', '1.95'));
+
+// Очікується
+// console.log(
+//   calcBMI({
+//     weight: '88,3',
+//     height: '1.75',
+//   })
+// );
+// console.log(
+//   calcBMI({
+//     weight: '68,3',
+//     height: '1.65',
+//   })
+// );
+// console.log(
+//   calcBMI({
+//     weight: '118,3',
+//     height: '1.95',
+//   })
+// );
+//
+// console.log(calcBMI());
+
+/*
+? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
+? замість набору незалежних аргументів.
+*/
+
+// function printContactsInfo({ names, phones } = {names: 'Jacob', phones: '89001234567'}) {
+//   const nameList = names.split(',');
+//   const phoneList = phones.split(',');
+//
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
 // }
 
+// Було
+// printContactsInfo(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
+
+// Очікується
+// printContactsInfo({
+//   names: 'Jacob,William,Solomon,Artemis',
+//   phones: '89001234567,89001112233,890055566377,890055566300',
+// });
+
+
 /*
-? Напишіть ф-цію calcTotalPrice(stones, stoneName), яка приймає масив об'єктів та рядок з назвою каменю.
-? Ф-ція рахує і повертає загальну вартість каміння з таким ім'ям.
+? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
+? замість набору незалежних аргументів.
 */
 
-// const stones = [
-//   { name: 'Смарагд', price: 1300, quantity: 4 },
-//   { name: 'Діамант', price: 2700, quantity: 3 },
-//   { name: 'Сапфір', price: 400, quantity: 7 },
-//   { name: 'Щебінь', price: 200, quantity: 2 },
-// ];
+// function getBotReport(obj) {
+//   const {
+//     companyName,
+//     bots: { repair: repairBots, defence: defenceBots },
+//   } = obj;
 //
-// const calcTotalPrice = function (stones, stoneName) {
-//   for (const stone of stones) {
-//     if (stone.name === stoneName) {
-//       return stone.price * stone.quantity;
-//     }
+//   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
+// }
+//
+// // Было
+// console.log(getBotReport('Cyberdyne Systems', 150, 50));
+//
+// // Ожидается
+// console.log(
+//   getBotReport({
+//     companyName: 'Cyberdyne Systems',
+//     bots: {
+//       repair: 150,
+//       defence: 50,
+//     },
+//   })
+// ); // "Cyberdyne Systems has 200 bots in stock"
+
+/*
+? Напиши функцію getStockReport(companyName, stock), щоб вона приймала об'єкт параметрів із властивостями companyName і stock і виводила репорт
+? про кількість товарів на складі будь-якої компанії.
+*/
+
+// const getStockReport = function ({ companyName, stock }) {
+//   let totalItems = 0;
+//
+//   const values = Object.values(stock);
+//
+//   for (const value of values) {
+//     totalItems += value;
 //   }
 //
-//   return `${stoneName} закінчився`;
+//   return `${companyName} has ${totalItems} items in stock`;
 // };
 //
-// console.log(calcTotalPrice(stones, 'Смарагд')); // 5200
-// console.log(calcTotalPrice(stones, 'Діамант')); // 8100
-// console.log(calcTotalPrice(stones, 'Аконіт')); // Каменя за такою назвою не знайдено
+// console.log(
+//   getStockReport({
+//     companyName: 'Cyberdyne Systems',
+//     stock: {
+//       repairBots: 150,
+//       defenceBots: 50,
+//     },
+//   })
+// ); //"Cyberdyne Systems has 200 items in stock"
+
+// console.log(
+//   getStockReport({
+//     companyName: 'Belacci',
+//     stock: {
+//       shoes: 20,
+//       skirts: 10,
+//       hats: 5,
+//     },
+//   })
+// ); // "Belacci has 35 item in stock"
 
 /*
-? Напиши скрипт управління особистим кабінетом інтернет-банку.
-? Є об'єкт account, в якому необхідно реалізувати методи для роботи з балансом та історією транзакцій.
-?
-? Типів транзакцій лише два:
-? Можна покласти чи зняти гроші з рахунку.
-?
-? Кожна транзакція це об'єкт із властивостями: id, type та amount
+? Напиши функцію createContact(partialContact) так,
+? щоб вона повертала новий об'єкт контакту з доданими властивостями id і createdAt,
+? а також list зі значенням "default" якщо у partialContact немає такої властивості.
 */
 
-/*const Role = {
-  USER: 'deposit',
-  ADMIN: 'withdraw',
-  GUEST: 'withdraw',
+const generateId = function () {
+  return '_' + Math.random().toString(36).substr(2, 9);
 };
-const serviceKey = '123456';
+
+const createContact = function (partialContact) {
+  return {
+    id: generateId(),
+    createdAt: new Date(),
+    list: 'default',
+    ...partialContact,
+  }
+};
+
+console.log(
+  createContact({
+    name: 'Mango',
+    email: 'mango@mail.com',
+    list: 'friends',
+  })
+);
+
+// console.log(
+//   createContact({
+//     name: 'Poly',
+//     email: 'poly@hotmail.com',
+//   })
+// );
+
+/*
+? Напиши функцію transformUsername(user) так, щоб вона повертала новий об'єкт із властивістю fullName, замість firstName та lastName.
 */
 
-const Transaction = {
-  DEPOSIT: 'deposit',
-  WITHDRAW: 'withdraw',
-};
+// const transformUsername = function ({ firstName, lastName, ...anotherProps } = {}) {
+//   return {
+//     ...anotherProps,
+//     fullName: `${firstName} ${lastName}`,
+//   };
+// };
 
-const Test = {
-  DEPOSIT: 'deposit',
-  WITHDRAW: 'withdraw',
-};
+// console.log(
+//   transformUsername({
+//     id: 1,
+//     firstName: 'Jacob',
+//     lastName: 'Mercer',
+//     email: 'j.mercer@mail.com',
+//     friendCount: 40,
+//   })
+// );
 
-
-const dog = {
-  type: 'dog',
-  name: 'Jack'
-};
-
-
-const person = {
-  name: 'John',
-  pet: dog
-};
-
-const notebook = {
-  notes: [],
-  addNote(note) {
-    this.notes.push(note)
-  },
-  pages: [
-    {order: 1},
-    {order: 1},
-  ]
-}
-
-console.log('person: ', person);
-
-
-console.log(Transaction.DEPOSIT);
-
-const account = {
-  balance: 0, // Поточний баланс рахунку
-  startId: 0, // Початковий ID для транзакції
-  transactions: [], // Історія транзакцій
-  /*
-   * Метод створює та повертає об'єкт транзакції.
-   * Приймає суму та тип транзакції.
-   */
-  createTransaction(amount = 100, type = 'deposit') {
-    return {amount: 100, transactionType: 'deposit'};
-  },
-  generateId() { // Генерація ID для транзакції
-    return (this.startId += 1);
-  },
-
-  /*
-   * Метод, що відповідає за додавання суми до балансу.
-   * Приймає суму танзакції.
-   * Викликає createTransaction для створення об'єкта транзакції
-   * після чого додає його в історію транзакцій
-   */
-  deposit(value = 100) {
-    const transaction = this.createTransaction(100, 'deposit');
-    this.transactions.push(transaction);
-  },
-
-  /*
-   * Метод, що відповідає за зняття суми з балансу.
-   * Приймає суму танзакції.
-   * Викликає createTransaction для створення об'єкта транзакції
-   * Після чого додає його в історію транзакцій.
-   *
-   * Якщо amount більше ніж поточний баланс, виводь повідомлення
-   * про те, що зняття такої суми не можливе, недостатньо коштів.
-   */
-  withdraw(amount) {},
-
-  /*
-   * Метод, що повертає поточний баланс
-   */
-  getBalance() {},
-
-  /*
-   * Метод шукає та повертає об'єкт транзації по id
-   */
-  getTransactionDetails(id) {},
-
-  /*
-  * Метод повертає кількість коштів
-    * певного типу транзакції з усієї історії транзакцій
-   */
-  getTransactionTotal(type) {},
-};
-
-account.deposit(100);
-console.log(account.transactions);
+// console.log(
+//   transformUsername({
+//     id: 2,
+//     firstName: 'Adrian',
+//     lastName: 'Cross',
+//     email: 'a.cross@hotmail.com',
+//     friendCount: 20,
+//   })
+// );
