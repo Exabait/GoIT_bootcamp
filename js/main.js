@@ -1,254 +1,118 @@
-'use strict';
-/*
- *  Контекст виконання this
- */
-
-/*
- * this існує тільки всередині функцій.
- * На this не впливає те де функція була //! ОГОЛОШЕНА.
- * На this впливає те де функція //! ВИКЛИКАЄТЬСЯ.
- */
-
-// let value = 'test'
+// let globalValue = 'globalValue';
 //
-// //TODO: Розглянемо як this поводиться в методах
-// const user = {
-//   name: 'Luis',
-//   age: 30,
-//
-//   showThis() {
-//     console.log('This --->', this);
-//   },
-//
-//   showName() {
-//     console.log(this.name);
-//   },
-// };
-//
-// user.showThis();
-// user.showName();
+// for (let i = 0; i < 5; i++) {
+//   console.log(globalValue);
+// }
 
-// const anotherUser = {
-//   name: 'Oleksii',
-//   age: 50,
-//
-//   showThis() {
-//     console.log('This --->', this);
-//   },
-//
-//   showName() {
-//     console.log(this.name);
-//   },
-// };
+// console.log(i);
 
-// anotherUser.showThis();
-// anotherUser.showName();
 
-//TODO: Розглянемо як this поводиться у звичайних функціях (суворий, не суворий режим)
-
-//? Function expression
-// const greet = function () {
-//   console.log('This --->', this);
-//   console.log('Hello');
-// };
-//
-// greet();
-
-//? Function declaration
-// function greet() {
-//   console.log('This --->', this);
-//   console.log('Hello');
+// const counter = {
+//   counter: 0,
+//   myFunction(myCounter = counter) {
+//     this.counter = this.counter + 1;
+//     return counter;
+//   }
 // }
 //
-// greet();
+// const myFunction = {
+//   myCounter: 0
+// }
 
-//? Arrow function
-// const greet = () => {
-//   console.log('This --->', this);
-//   console.log('Hello');
-// };
-//
-// greet();
-
-//TODO: Присвоєння функції як методу об'єкта
-// const showThis = function () {
-//   console.log('This --->', this);
-// };
-//
-// const showName = function () {
-//   console.log(`Hello ${this.name}`);
-// };
-//
-// const user = {
-//   name: 'Luis',
-//   age: 30,
-//   // showUserName: showName // console.log(`Hello ${user.name}`);
+// const myFunction = function() {
+//   0 = 0 + 1;
+//   return counter;
 // };
 
-// user.showUserName = showName;
-// user.showUserThis = showThis;
+// function createCounter(startFrom) {
+//   let counter = startFrom;
+//   const myFunction = function() {
+//     counter--;
+//     return counter;
+//   };
+//   return myFunction;
+// }
 //
-// console.log(user);
-//
-// user.showUserThis();
-// user.showUserName();
-//
-// const anotherUser = {
-//   name: 'Oleksii',
-//   age: 40,
-// };
-//
-// anotherUser.showUserName = showName;
-// anotherUser.showUserThis = showThis;
-//
-// console.log(anotherUser);
-//
-// anotherUser.showUserThis();
-// anotherUser.showUserName();
+// const increment = createCounter(100);// myFunction (функція, а не її результат)
+// const c1 = increment(); // myFunction() // counter = 0 --> counter += counter + 1 = 1
+// const c2 = increment(); // myFunction() // counter = 1 --> counter += counter + 1 = 2
+// // const c3 = increment();
+// const c4 = increment();
+// console.log('example increment', c1, c2, c4);
+// //
+// const increment2 = createCounter();
+// console.log('createCounter: ', increment2());
 
-//TODO: Виклик методу об'єкта без контексту
-// const user = {
-//   name: 'Luis',
-//   age: 30,
+// let a = 'a';
+// const b = 'b';
 //
-//   showUserThis() {
-//     console.log('This --->', this);
-//   },
+// console.log(c);
 //
-//   showUserName() {
-//     console.log(this.name);
-//   },
-// };
+// const someFn = function() {
+//   console.log(c);
+// }
 //
-// const showThis = user.showUserThis;
-// const showName = user.showUserName;
+// someFn();
+// f();
+// console.log(c);
 //
-// showThis();
-// showName();
+// var c = 1;
+//
+// function f() {
+//   var c = 2;
+// }
+//
+// var c = 3;
+//
+// console.log(c);
 
-//TODO: This в callback функціях
+// var c = 'aqwre';
 
-// const user = {
-//   name: 'Luis',
-//   age: 30,
+// const newParams = {};
 //
-//   showUserThis() {
-//     console.log('This --->', this);
-//   },
+// if (newParams) {
+//   Object.keys(newParams).forEach(function(key) {
+//     this.loadingParams_[key] = newParams[key];
+//   }.bind(this));
+// }
 //
-//   showUserName() {
-//     console.log(this.name);
-//   },
-// };
+// const someFunction = function(key) {
+//   this.loadingParams_[key] = newParams[key];
+// }.bind(this)
 //
-// const someFunction = function (callback) {
-//   // let callback = user.showUserThis;
+//   [].forEach(function(key) {this.loadingParams_[key] = newParams[key]})
+//
+// const forEach = (callback) {
 //   callback();
-// };
-//
-// someFunction(user.showUserThis);
-
-//TODO: This у стрілочних функціях. Стрілочні функції не мають свого this, this в стрілках завжди посилається на батьківський this.
-// const user = {
-//   name: 'Luis',
-//   age: 30,
-//
-//   changeUserAge(newAge) {
-//     const changeAge = () => {
-//       console.log(`this ---->`, this);
-//       this.age = newAge;
-//     };
-//
-//     changeAge();
-//   },
-// };
-//
-// user.changeUserAge(40);
-// console.log(user);
-
-/*
-? Яким буде результат виконання цього коду?
-*/
-
-// let user = {
-//   name: 'Джон',
-//
-//   go() {
-//     console.log(this);
-//     console.log(this.name);
-//   },
-// };
-//
-// const goFn = user.go;
-
-// goFn();
-// user.go();
-
-/*
-? Тут функція makeUser повертає об'єкт.
-? Яким буде результат при зверненні до об'єкта ref? Чому?
-*/
-
-// const makeUser = function () {
-//   return {
-//     name: 'Джон',
-//     ref: this,
-//   };
-// };
-//
-// const user = makeUser(); // {name: 'Джон', ref: this}
-//
-// console.log(user);
-// console.log(user.ref.name);
-
-/*
-? Яким буде результат console.log
-*/
-
-// function makeUser() {
-//   return {
-//     name: 'Джон',
-//     ref() {
-//       return this;
-//     },
-//   };
 // }
 
-// let user = makeUser();
+const button1 = document.getElementById('button1');
+const button2 = document.getElementById('button2');
+const resultButton = document.getElementById('resultButton');
 
-// console.log(user);
-// console.log(user.ref().name);
+const user1 = {
+  count: 0,
+}
 
-/*
-? Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
-*/
+const user2 = {
+  count: 0,
+  increase() {
+    [1, 2, 3].forEach(() => {this.count++})
+  }
+}
 
-// const ladder = {
-//   step: 0,
+user2.increase();
+console.log(user2);
 
-//   up() {
-//     this.step += 1;
-//     return this;
-//   },
+const increase = () => {
+  console.log(this);
+  this.count++;
+}
 
-//   down() {
-//     this.step -= 1;
-//     return this;
-//   },
+button1.addEventListener('click', increase)
 
-//   showStep() {
-//     console.log(this.step);
-//     return this;
-//   },
-// };
+button2.addEventListener('click', increase)
 
-// Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо зробити це так:
-
-// ladder.up();
-// ladder.up();
-// ladder.down();
-// ladder.showStep();
-
-// Змініть код методів up, down та showStep таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
-
-// ladder.up().up().down().showStep();
+resultButton.addEventListener('click', () => {
+  console.log({user1, user2})
+})
